@@ -55,13 +55,6 @@ class Customer {
     }
 
 
-    private int getFrequentRenterPoints(Rental rental) {
-        // add bonus for a two day new release rental
-        if ((rental.getMovie().getPriceCode() == Movie.NEW_RELEASE) && rental.getDaysRented() > 1)
-            return 2;
-        return 1;
-    }
-
     private double getTotalCharge() {
         double result = 0;
         Enumeration rentals = this.rentals.elements();
@@ -78,7 +71,7 @@ class Customer {
         Enumeration rentals = this.rentals.elements();
         while (rentals.hasMoreElements()) {
             Rental each = (Rental) rentals.nextElement();
-            result += getFrequentRenterPoints(each);
+            result += each.getFrequentRenterPoints();
         }
         return result;
 

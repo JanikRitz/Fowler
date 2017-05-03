@@ -19,7 +19,12 @@ class Rental {
         return movie.getCharge(daysRented);
     }
 
+    public int getFrequentRenterPoints(){
+        return movie.getFrequentRenterPoints(daysRented);
+    }
+
     String getString() {
         return "\t" + getMovie().getTitle() + "\t" + "\t" + getDaysRented() + "\t" + String.valueOf(getCharge()) + "\n";
     }
+
 }
