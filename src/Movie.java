@@ -3,7 +3,6 @@ public class Movie {
     public static final int REGULAR = 0;
     public static final int NEW_RELEASE = 1;
     private String title;
-    private int priceCode;
     private Price price;
 
     public Movie(String newTitle, int newPriceCode) {
@@ -12,7 +11,7 @@ public class Movie {
     }
 
     public int getPriceCode() {
-        return priceCode;
+        return price.getPriceCode();
     }
 
     public void setPriceCode(int arg) {
@@ -29,7 +28,6 @@ public class Movie {
             default:
                 throw new IllegalArgumentException("Icorrect Price Code");
         }
-        priceCode = arg;
     }
 
     public String getTitle() {
@@ -43,15 +41,15 @@ public class Movie {
 
     int getFrequentRenterPoints(int daysRented) {
         // add bonus for a two day new release rental
-        if ((getPriceCode() == NEW_RELEASE) && daysRented > 1)
-            return 2;
-        return 1;
+        return price.getFrequentRenterPoints(daysRented);
     }
 
     abstract class Price {
         abstract int getPriceCode();
-
         abstract double getCharge(int daysRented);
+        int getFrequentRenterPoints(int daysRented){
+            return 1;
+        }
     }
 
     class ChildrensPrice extends Price {
@@ -80,6 +78,11 @@ public class Movie {
         @Override
         double getCharge(int daysRented) {
             return daysRented * 3;
+        }
+
+        @Override
+        int getFrequentRenterPoints(int daysRented){
+            return (daysRented > 1) ? 2: 1;
         }
     }
 
