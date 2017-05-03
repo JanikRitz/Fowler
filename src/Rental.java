@@ -35,4 +35,8 @@ class Rental {
     public Movie getMovie() {
         return movie;
     }
+
+    String getString() {
+        return "\t" + getMovie().getTitle() + "\t" + "\t" + getDaysRented() + "\t" + String.valueOf(getCharge()) + "\n";
+    }
 }
