@@ -23,11 +23,13 @@ class Customer {
         String result = "Rental Record for " + this.getName() + "\n";
         result += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
 
+        StringBuilder resultBuilder = new StringBuilder(result);
         while (enum_rentals.hasMoreElements()) {
             Rental each = (Rental) enum_rentals.nextElement();
             //show figures for this rental
-            result += each.getString();
+            resultBuilder.append(each.getString());
         }
+        result = resultBuilder.toString();
         //add footer lines
         result += "Amount owed is " + String.valueOf(getTotalCharge()) + "\n";
         result += "You earned " + String.valueOf(getAllFrequentRenterPoints()) + " frequent renter points";
