@@ -14,7 +14,7 @@ public class Movie {
         return price.getPriceCode();
     }
 
-    public void setPriceCode(int arg) {
+    public void setPriceCode(int arg) throws IllegalArgumentException {
         switch (arg) {
             case REGULAR:
                 price = new RegularPrice();
